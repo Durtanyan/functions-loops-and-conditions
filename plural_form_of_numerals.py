@@ -15,20 +15,15 @@ Created on Sun Sep 27 09:46:34 2020
 
 Твоя задача написать функцию plural_form согласования окончаний 
 существительных в зависимости от переданного числа. 
-Функция должна принимать 4 параметра:
-
-число
-форма слова 1
-форма слова 2
-форма слова 3
-Функция должна возвращать строку вида {число} {нужная форма}. Например, 
-
-plural_form(1, ‘яблоко’, ‘яблока’, ‘яблок’) - 1 яблоко
-plural_form(2, ‘яблоко’, ‘яблока’, ‘яблок’) - 2 яблока
-plural_form(11, ‘студент’, ‘студента’, ‘студентов’) - 11 студентов
-plural_form(15, ‘студент’, ‘студента’, ‘студентов’) - 15 студентов
-plural_form(3, ‘студент’, ‘студента’, ‘студентов’) - 13 студента
-
+'''
+'''
+ВНИМАНИЕ! Я НЕМНОГО ОТОШЕЛ ОТ УСЛОВИЙ ЗАДАЧИ. ЗАПИЛИЛ ОСНОВНУЮ ФУНКЦИЮ
+НА ОДНОМ ПАРАМЕТРЕ. ЭТОТ ПАРАМЕТР ТОЖЕ ФУНКЦИЯ enter_a_number() ИЗ НЕЕ 
+МЫ ПОЛУЧАЕМ ОСНОВНОЕ ЧИСЛО ИЗ КОТОРОГО БУДЕМ ПОЛУЧАТЬ ТОТ ИЛИ ИНОЙ ВАРИАНТ
+ОКОНЧАНИЯ СЛОВА. МНЕ ПОКАЗАЛОСЬ, ЧТО ПОСТРОИТЬ ОСНОВНУЮ ФУНКЦИЮ НА СПИСКЕ ОКОНЧАНИЙ
+БУДЕТ БОЛЕЕ РАСШИРЯЕМО ВПОСЛЕДСТВИИ. В ПЕРЕМЕННУЮ answer МОЖНО БУДЕТ 
+ДОБАВЛЯТЬ ЕЩЕ ВАРИАНТЫ, В СПИСОК list_of_possible_endings ОКОНЧАНИЯ ПО НЕОБХОДИМОСТИ
+А В ФУНКЦИИ plural_form() ДОПИСЫВАТЬ ОБРАБОТКИ
 '''
 #создаем функцию, которая должна будет возвращать нам число
 #не будем проверять на пустую строку т.к. пустая строка - уже не число
@@ -66,9 +61,11 @@ list_of_possible_endings = ['', 'а', 'ов', '-но', 'о', '-ин']
 #все вычисления окончаний я построил на остатках от деления на 10
 list_number = [0, 5, 6, 7, 8, 9]
 numbers_of_exceptions = [2, 3, 4]
+#это исключения
+exceptions = [11, 12, 13, 14]
 
 #ЭТО ОСНОВНАЯ ФУКЦИЯ В КОТОРОЙ БУДЕТ ВСЕ ПРОИСХОДИТЬ ;-)   
-def plural_form(number, list_args):
+def plural_form(number):
     #это переменная выбора что считать 1-яблоки, 2-студентов
     count = invoice_object()
     remainder_of_division = number % 10
@@ -83,11 +80,9 @@ def plural_form(number, list_args):
         #если иные, то без окончания "1347 яблок"
         print('Будем считать яблоки.')
         #обрабатываем варианты без окончаний "яблок"
-        #я не стал создавать отдельную переменную для исключений тупо запилил их 
-        #в конце этогто 'if'
         if remainder_of_division in list_number \
         and remainder_of_division not in numbers_of_exceptions and number != 1 \
-        or number in [11, 12, 13, 14]:
+        or number in exceptions:
             final_str += str(number) + ' ' + root
         #обрабатываем варианты с окончаниями "а" "яблока"
         elif remainder_of_division in numbers_of_exceptions:
@@ -111,7 +106,7 @@ def plural_form(number, list_args):
         #обрабатываем с окончанием "ов" т.е. - "студентов"
         if remainder_of_division in list_number\
         and remainder_of_division not in numbers_of_exceptions and number != 1 \
-        or number in [11, 12, 13, 14]:
+        or number in exceptions:
             final_str += str(number) + ' ' + root + list_of_possible_endings[2]
         elif remainder_of_division in numbers_of_exceptions:
             final_str += str(number) + ' ' + root + list_of_possible_endings[1]
@@ -122,10 +117,11 @@ def plural_form(number, list_args):
         print('____________________________________________________________')
         print(f'Нужно было выбрать 1 или 2, а Вы выбрали {count}...')
         print('Никого мы считать не будем!!!')
+        print('____________________________________________________________')
     
     return final_str
 
-print(plural_form(enter_a_number(), list_of_possible_endings))
+print(plural_form(enter_a_number()))
 
 
 
