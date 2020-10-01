@@ -21,8 +21,35 @@ while integer <= 20000:
         print('Fizz')
         if integer % 5 == 0:
             print('Buzz')
-        if (integer % 3 == 0 and integer % 5 == 0):
-            print('FizzBuzz')
-            summ += integer
+            if (integer % 3 == 0 and integer % 5 == 0):
+                print('FizzBuzz')
+                summ += integer
     integer += 1
 print(f'Сумма чисел из диапазона от 1000 до 20000 включительно равна: {summ}')
+
+"""способ сприменением функции range()
+"""
+summ1 = 0
+for num in range(1000, 20001):
+    if num % 3 == 0:
+        print('Fizz')
+        if num % 5 == 0:
+            print('Buzz')
+            if num % 3 == 0 and num % 5 == 0:
+                print('FizzBuzz')
+                summ1 += num
+
+print(summ1)
+
+print(f'Сумма чисел из диапазона от 1000 до 20000 включительно равна: {summ1}')
+
+
+
+
+
+
+
+
+
+
+
