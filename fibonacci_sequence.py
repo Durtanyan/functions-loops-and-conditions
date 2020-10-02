@@ -4,22 +4,23 @@ Created on Thu Oct  1 21:23:08 2020
 
 @author: lukin
 """
+"""проанализируйте последовательность, состоящую из чисел, которые меньше 10.000.000 (десять миллионов). Т.е. как только наткнетесь на число больше 10 миллионов, то прерывайте последовательность.
 
+Вывести количество элементов в последовательности;
+Посчитать сумму всех четных элементов;
+Вывести все четные элементы;
+Вычислить предпоследнее число последовательности т.е. ближайшее к 10 миллионам.
 """
-Число первое:
-	number_up_to
+"""
+Число первое: number_up_to
 
-Число второе:
-	number_after
+Число второе: number_after
 
-Число временное:
-	number_tmp
+Число получаемое: summ_up_after = number_up_to + number_after	
 
-Число получаемое:
-	summ_up_after = number_up_to + number_after	
+Число конечное: number_finish
 
-Число конечное:
-	number_finish
+Список чисел последовательности: list_sequence
 """
 #определяем начальные значения начального и конечного числа
 #ОБРАТИТЕ ВНИМАНИЕ, что в начале цикла второе число меньше первого на единицу
@@ -31,32 +32,36 @@ summ_up_after = 0
 #число финиша цикла
 number_finish = int(input("Введите число завершения цикла: "))
 
+#список чисел последовательности
+list_sequence = []
 #основной цикл прерывать его будем по сумме двух чисел
 while number_up_to + number_after < number_finish:
 	#получаем сумму двух чисел
 	summ_up_after = number_up_to + number_after
+	#заполняем список полученными числами
+	if summ_up_after < number_finish:
+		list_sequence.append(summ_up_after)
 	#первое меняем на второе
 	number_up_to = number_after
 	#второе приравниваем к сумме
 	number_after = summ_up_after
 	#выводим сумму
 	print(summ_up_after)
-print("_______________________")
-print("|   Способ функцией   |")
-print("_______________________")
 	
-def fibonacci_sequence(number_up_to = 1, number_after = 0 ):
-	number_finish = int(input("Введите число окончания цикла: "))
-	summ_up_after = 0
-	while number_up_to + number_after < number_finish:
-		#получаем сумму двух чисел
-		summ_up_after = number_up_to + number_after
-		#первое меняем на второе
-		number_up_to = number_after
-		#второе приравниваем к сумме
-		number_after = summ_up_after
-		#выводим сумму
-		print(summ_up_after)
-	
+#количество элементов в последовательности
+print(f'Количество элементов в последовательности: {len(list_sequence)}')
 
-fibonacci_sequence()	
+#список четных членов последовательности
+even_members_sequence = []
+
+#Заполняем его.
+print("Четные члены последовательности: ")
+for num in list_sequence:
+	if num % 2 == 0:
+		even_members_sequence.append(num)
+		print(num)
+		
+#сумма всех четных членов последовательности
+print(f'Сумма всех четных членов последовательности:  {sum(even_members_sequence)}')
+print(f'Ближайшее к 10000000 число Фибоначчи: {list_sequence[len(list_sequence) - 1]}')
+		
