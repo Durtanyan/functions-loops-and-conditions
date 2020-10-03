@@ -84,6 +84,10 @@ def plural_form(number):
         and remainder_of_division not in numbers_of_exceptions and number != 1 \
         or number in exceptions:
             final_str += str(number) + ' ' + root
+        #ОБНАРУЖИЛ, ЧТО ЧИСЛО 111 И 10 ТИ КРАТНЫЕ ЕМУ ОБРАБАТЫВАЮТСЯ НЕПРАВИЛЬНО. 
+        #ИСПРАВИЛ НЕМНОГО КРИВО, НО РАБОТАЕТ
+        elif number % 100 == 11:
+            final_str += str(number) + ' ' + root
         #обрабатываем варианты с окончаниями "а" "яблока"
         elif remainder_of_division in numbers_of_exceptions:
             final_str += str(number) + ' ' + root + list_of_possible_endings[1]
@@ -107,6 +111,10 @@ def plural_form(number):
         if remainder_of_division in list_number\
         and remainder_of_division not in numbers_of_exceptions and number != 1 \
         or number in exceptions:
+            final_str += str(number) + ' ' + root + list_of_possible_endings[2]
+        #ОБНАРУЖИЛ, ЧТО ЧИСЛО 111 И 10 ТИ КРАТНЫЕ ЕМУ ОБРАБАТЫВАЮТСЯ НЕПРАВИЛЬНО. 
+        #ИСПРАВИЛ НЕМНОГО КРИВО, НО РАБОТАЕТ
+        elif number % 100 == 11:
             final_str += str(number) + ' ' + root + list_of_possible_endings[2]
         elif remainder_of_division in numbers_of_exceptions:
             final_str += str(number) + ' ' + root + list_of_possible_endings[1]

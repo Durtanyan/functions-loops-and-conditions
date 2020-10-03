@@ -68,5 +68,5 @@ print(f'Сумма всех четных членов последователь
 {sum([num for num in list_sequence if num % 2 == 0])}')
 
 print('______________________________________________________')
-print(f'Ближайшее к 10000000 число Фибоначчи: {list_sequence[len(list_sequence) - 1]}')
+print(f'Ближайшее к {number_finish} число Фибоначчи: {list_sequence[len(list_sequence) - 1]}')
 		
