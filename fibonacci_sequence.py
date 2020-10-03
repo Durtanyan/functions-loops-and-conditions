@@ -31,6 +31,8 @@ summ_up_after = 0
 
 #число финиша цикла
 number_finish = int(input("Введите число завершения цикла: "))
+print('______________________________________________________')
+print(f'Числа Фибоначчи до {number_finish}.')
 
 #список чисел последовательности
 list_sequence = []
@@ -47,21 +49,24 @@ while number_up_to + number_after < number_finish:
 	number_after = summ_up_after
 	#выводим сумму
 	print(summ_up_after)
+    
+print('______________________________________________________')
 	
 #количество элементов в последовательности
 print(f'Количество элементов в последовательности: {len(list_sequence)}')
 
-#список четных членов последовательности
-even_members_sequence = []
+print('______________________________________________________')
 
-#Заполняем его.
-print("Четные члены последовательности: ")
-for num in list_sequence:
-	if num % 2 == 0:
-		even_members_sequence.append(num)
-		print(num)
-		
+#список четных членов последовательности
+print("Четные члены последовательности: ")        
+#list comprehension
+even_members_sequence = [print(num) for num in list_sequence if num % 2 == 0]
+
+print('______________________________________________________')		
 #сумма всех четных членов последовательности
-print(f'Сумма всех четных членов последовательности:  {sum(even_members_sequence)}')
+print(f'Сумма всех четных членов последовательности: \
+{sum([num for num in list_sequence if num % 2 == 0])}')
+
+print('______________________________________________________')
 print(f'Ближайшее к 10000000 число Фибоначчи: {list_sequence[len(list_sequence) - 1]}')
 		
